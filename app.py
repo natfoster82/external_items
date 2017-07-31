@@ -5,6 +5,7 @@ from requests.auth import HTTPBasicAuth
 
 # app setup
 app = Flask(__name__)
+app.config.from_pyfile('config.py')
 
 
 # views
