@@ -11,12 +11,12 @@ def hello():
 
 @app.route('/get_url/<route>')
 def get_url(route):
-    return url_for(route)
+    return url_for(route, _external=True)
 
 
 @app.route('/get_url/<route>', methods=['POST'])
 def get_url_by_post(route):
-    return url_for(route)
+    return url_for(route, _external=True)
 
 
 @app.route('/thank_you')
