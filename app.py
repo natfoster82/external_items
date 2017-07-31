@@ -58,5 +58,5 @@ def everybody_wins():
             r = requests.post(url, json=json, headers=headers, auth=HTTPBasicAuth(username=username, password=password))
             if r.status_code not in {200, 201}:
                 abort(400)
-            return redirect(url_for('thank_you'))
+        return redirect(url_for('thank_you'))
     return render_template('everybody_wins.html')
