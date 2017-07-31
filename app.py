@@ -11,12 +11,13 @@ def hello():
 
 @app.route('/get_url/<route>')
 def get_url(route):
-    return url_for(route, _external=True)
+    return url_for(route, **request.args, _external=True)
 
 
 @app.route('/get_url/<route>', methods=['POST'])
 def get_url_by_post(route):
-    return url_for(route, _external=True)
+    data = request.get_json()
+    return url_for(route, **data, _external=True)
 
 
 @app.route('/thank_you')
@@ -27,5 +28,9 @@ def thank_you():
 @app.route('/everybody_wins', methods=['GET', 'POST'])
 def everybody_wins():
     if request.method == 'POST':
+        request_id = request.args.get('request_id')
+        if request_id:
+            # call the SEI webhook
+            pass
         return redirect(url_for('thank_you'))
     return render_template('everybody_wins.html')
