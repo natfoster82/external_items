@@ -4,10 +4,21 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
+asn1crypto==0.22.0        # via cryptography
+certifi==2017.7.27.1      # via requests
+cffi==1.10.0              # via cryptography
+chardet==3.0.4            # via requests
 click==6.7                # via flask
+cryptography==2.0.2       # via pyopenssl, requests
 flask==0.12.2
 gunicorn==19.7.1
+idna==2.5                 # via cryptography, requests
 itsdangerous==0.24        # via flask
 jinja2==2.9.6             # via flask
 markupsafe==1.0           # via jinja2
+pycparser==2.18           # via cffi
+pyopenssl==17.2.0         # via requests
+requests[security]==2.18.2
+six==1.10.0               # via cryptography, pyopenssl
+urllib3==1.22             # via requests
 werkzeug==0.12.2          # via flask
