@@ -21,7 +21,7 @@ def get_url(route):
 
 @app.route('/get_url/<route>', methods=['POST'])
 def get_url_by_post(route):
-    data = request.get_json()
+    data = request.get_json() or {}
     return url_for(route, _external=True, **data)
 
 
