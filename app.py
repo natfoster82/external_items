@@ -47,7 +47,7 @@ def everybody_wins():
         if response_id:
             exam_id = request.args.get('exam_id')
             external_token = request.args.get('external_token')
-            url = app.config['SEI_URL_BASE'] + '/set_response/' + response_id
+            url = app.config['SEI_URL_BASE'] + '/api/set_response/' + response_id
             json = {
                 'value': request.form['submit']
             }
