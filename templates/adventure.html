@@ -11,6 +11,10 @@
         height:40px;
         font-size: 15px;
       }
+      #submit {
+        position: absolute;
+        left:-54321em;
+      }
     </style>
 </head>
 <body>
@@ -21,18 +25,19 @@
     <button id="btn_two"></button>
     <button id="btn_three"></button>
     <p id="final_score"></p>
-    <button id="submit" style="display: none;">Submit Score</button>
+    <button id="submit">Submit Score</button>
     <script type="text/javascript" src="//caveon-public.s3.amazonaws.com/SeiMessenger.js"></script>
     <script type="text/javascript">
         (function(){
             var stepNum = 1;
             var score = 0;
+            var stem = document.getElementById('stem');
             var choice1 = document.getElementById('btn_one');
             var choice2 = document.getElementById('btn_two');
             var choice3 = document.getElementById('btn_three');
-            var submitScore = document.getElementById('submit');
-            var stem = document.getElementById('stem');
             var finalScore = document.getElementById('final_score');
+            var submitScore = document.getElementById('submit');
+
             var messenger = new SeiMessenger('*');
 
             var choices = {
@@ -142,11 +147,11 @@
               }
             }
             function init() {
-                document.getElementById('btn_one').addEventListener('click', selectedOne);
-                document.getElementById('btn_two').addEventListener('click', selectedTwo);
-                document.getElementById('btn_three').addEventListener('click', selectedThree);
-                document.getElementById('submit').addEventListener('click', submitScore);
-                gotoStep(1);
+              choice1.addEventListener('click', selectedOne);
+              choice2.addEventListener('click', selectedTwo);
+              choice3.addEventListener('click', selectedThree);
+              submitScore.addEventListener('click', submitFinalScore);
+              gotoStep(1);
             }
             function tryAgain() {
               choice1.style.display = 'block';
@@ -171,7 +176,8 @@
               choice1.style.display = 'none';
               choice2.style.display = 'none';
               choice3.style.display = 'none';
-              submitScore.style.display = 'block';
+              submitScore.style.position = 'relative';
+              submitScore.style.left = '0px';
               finalScore.innerHTML = 'You scored ' + score + ' points.';
             }
             function selectedOne() {
@@ -184,8 +190,9 @@
               gotoStep(choices[stepNum].destinations[2])
             }
 
-            function submitScore() {
-              messenger.sendMessage(stepNum)
+            function submitFinalScore() {
+              console.log('submitScore', messenger, score)
+              messenger.sendMessage(score)
             }
 
             init();
