@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Choose Your Own Adventure!</title>
+    <style type="text/css">
+      button {
+        display: block;
+        margin:15px 0;
+        width:300px;
+        height:40px;
+        font-size: 15px;
+      }
+    </style>
+</head>
+<body>
+<h1>May the path you choose be just and right!</h1>
+<div>
+    <p id="stem"></p>
+    <button id="btn_one"></button>
+    <button id="btn_two"></button>
+    <button id="btn_three"></button>
+    <button id="try_again" style="display: none;">TRY AGAIN</button>
+    <script type="text/javascript">
+        (function(){
+            var stepNum = 1;
+            var choice1 = document.getElementById('btn_one');
+            var choice2 = document.getElementById('btn_two');
+            var choice3 = document.getElementById('btn_three');
+            var tryAgainBtn = document.getElementById('try_again');
+            var stem = document.getElementById('stem');
+
+            var choices = {
+              1: {
+                stem: "You approach an old castle. What do you do?",
+                options: [
+                  "Turn around and run",
+                  "look for a secret entrance",
+                  "go through the open front gate"
+                ],
+                destinations: [50, 2, 51]
+              },
+              2: {
+                stem: "Which secret entrance do you take?",
+                options: [
+                  "Trap door by tree",
+                  "Cracked window",
+                  "Back door"
+                ],
+                destinations: [3, 52, 51]
+              },
+              3: {
+                stem: "The trap door leads down to a dank basement. There are three weapons, which do you choose?",
+                options: [
+                  "Baseball bat with nail in it",
+                  "Claymore",
+                  "Blunderbuss"
+                ],
+                destinations: [4, 53, 54]
+              },
+              4: {
+                stem: "You encounter a spooky skeleton who starts throwing baseballs at you. What is your next move?",
+                options: [
+                  "Go back and get the claymore",
+                  "Smash him with the baseball bat.",
+                  "Try and hit the baseballs back at him"
+                ],
+                destinations: [53, 55, 5]
+              },
+              5: {
+                stem: "After socking a few dingers you realize it's the skeleton of babe ruth. He congratualtes you on a job well done and offers you a scepter. Which do you choose?",
+                options: [
+                  "Scepter of WISDON",
+                  "Scepter of POWER.",
+                  "Scpeter of RICHES"
+                ],
+                destinations: [56, 57, 6]
+              },
+              6: {
+                stem: "A gang of immortal knights sawarms around you but just before they overtake you, you offer them each $1M dollars and they instead join. What's your next move?",
+                options: [
+                  "Raid the evil castle master with the knights.",
+                  "Take the scepter and leave with new friends",
+                  "Hit on the hottest knight"
+                ],
+                destinations: [58, 7, 59]
+              },
+              7: {
+                stem: "You and your new knight friends all go on fun adventures. YOU WIN",
+                options: [
+                  "Raid the evil castle master with the knights.",
+                  "Take the scepter and leave with new friends",
+                  "Hit on the hottest knight"
+                ],
+                gameOver: true,
+                destinations: [58, 7, 59]
+              },
+              50: {
+                stem: "You turn around and you are killed by your problems. GAME OVER",
+                gameOver: true,
+              },
+              51: {
+                stem: "You are smashed by a huge mallet. GAME OVER",
+                gameOver: true,
+              },
+              52: {
+                stem: "As you slide the window up the pane of glass slices you in half. GAME OVER",
+                gameOver: true,
+              },
+              53: {
+                stem: "You attempt to swing the claymore but you throw your shoulder out. The physical therapy bills bankrupt you. GAME OVER",
+                gameOver: true,
+              },
+              54: {
+                stem: "You look into the barrell to see if it is loaded and it the weapon fires. GAME OVER",
+                gameOver: true,
+              },
+              55: {
+                stem: "Your bat is no match for his spookiness, you freeze in fear and are spooked to death. GAME OVER",
+                gameOver: true,
+              },
+              56: {
+                stem: "A goblin has laid out a chess board and challenged you to a game. You reach for your scepter of wisdom to guide you. Unfortunately it's very soft and so you are beaten to death with chess pieces. GAME OVER",
+                gameOver: true,
+              },
+              57: {
+                stem: "A minataur stands before you with a flaming sword. You reach for your scepter of POWER but in fine print is says 'Power of Love' and you are chopped in half and melted. GAME OVER",
+                gameOver: true,
+              },
+              58: {
+                stem: "The castle master is evil incarnate. You take a breath inside the chamber and explode from the inside as he has enveloped you being. GAME OVER",
+                gameOver: true,
+              },
+              59: {
+                stem: "Since you paid the knights, you are considered their professional superior and your advances are seen as harassment. GAME OVER",
+                gameOver: true,
+              }
+            }
+            function init() {
+                document.getElementById('btn_one').addEventListener('click', selectedOne);
+                document.getElementById('btn_two').addEventListener('click', selectedTwo);
+                document.getElementById('btn_three').addEventListener('click', selectedThree);
+                document.getElementById('try_again').addEventListener('click', tryAgain);
+                gotoStep(1);
+            }
+            function tryAgain() {
+              choice1.style.display = 'block';
+              choice2.style.display = 'block';
+              choice3.style.display = 'block';
+              tryAgainBtn.style.display = 'none';
+              gotoStep(1);
+            }
+            function gotoStep(step) {
+              stepNum = step;
+              console.log(stepNum, step, stem)
+              if(choices[stepNum].gameOver) {
+                choice1.style.display = 'none';
+                choice2.style.display = 'none';
+                choice3.style.display = 'none';
+                tryAgainBtn.style.display = 'block';
+              }
+              stem.innerHTML = choices[stepNum].stem;
+              choice1.innerHTML = choices[stepNum].options[0];
+              choice2.innerHTML = choices[stepNum].options[1]
+              choice3.innerHTML = choices[stepNum].options[2]
+            }
+
+            function selectedOne() {
+              gotoStep(choices[stepNum].destinations[0])
+            }
+            function selectedTwo() {
+              gotoStep(choices[stepNum].destinations[1])
+            }
+            function selectedThree() {
+              gotoStep(choices[stepNum].destinations[2])
+            }
+
+            function proceed() {
+                stepNum++;
+                console.log('go to step ' + stepNum);
+            }
+
+            init()
+
+        }());
+    </script>
+</form>
+</body>
+</html>
