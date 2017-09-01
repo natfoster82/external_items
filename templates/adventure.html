@@ -36,6 +36,12 @@
         position: absolute;
         left:-54321em;
       }
+      .death {
+        display: none;
+      }
+      .finn {
+        max-width: 100%;
+      }
     </style>
 </head>
 <body>
@@ -46,7 +52,8 @@
     <button id="btn_two"></button>
     <button id="btn_three"></button>
     <p id="final_score"></p>
-    <button id="submit">Submit Score</button>
+    <img class="death" id="death" src="{{ url_for('static', filename='adventure/wizard.gif') }}"/>
+    <img class="finn" id="finn" src="{{ url_for('static', filename='adventure/finn.gif') }}"/>
     <script type="text/javascript" src="//caveon-public.s3.amazonaws.com/SeiMessenger.js"></script>
     <script type="text/javascript">
         (function(){
@@ -57,7 +64,8 @@
             var choice2 = document.getElementById('btn_two');
             var choice3 = document.getElementById('btn_three');
             var finalScore = document.getElementById('final_score');
-            var submitScore = document.getElementById('submit');
+            var death = document.getElementById('death');
+            var finn = document.getElementById('finn');
 
             var messenger = new SeiMessenger('*');
 
@@ -197,9 +205,11 @@
               choice1.style.display = 'none';
               choice2.style.display = 'none';
               choice3.style.display = 'none';
-              submitScore.style.position = 'relative';
-              submitScore.style.left = '0px';
+              death.style.display = 'inline';
+              finn.style.display = 'none';
               finalScore.innerHTML = 'You scored ' + score + ' points.';
+              setTimeout(submitFinalScore, 5000)
+
             }
             function selectedOne() {
               gotoStep(choices[stepNum].destinations[0])
