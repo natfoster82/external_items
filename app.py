@@ -43,6 +43,10 @@ def thank_you():
 def adventure():
     return render_template('adventure.html')
 
+@app.route('/connect4')
+def connect4():
+    return render_template('c4.html')
+
 
 @app.route('/everybody_wins', methods=['GET', 'POST'])
 def everybody_wins():
