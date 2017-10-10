@@ -6,6 +6,11 @@
 </head>
 <body>
 <iframe src="{{ url }}"></iframe>
-<button type="button">Submit</button>
+<form method="post" action="{{ url_for('xtreme.submit', token=token) }}">
+    <input name="instance_id" type="hidden" value="{{ instance_id }}"/>
+    <input name="response_id" type="hidden" value="{{ response_id }}"/>
+    <input name="exam_id" type="hidden" value="{{ exam_id }}"/>
+    <input name="submit" type="submit" value="Submit"/>
+</form>
 </body>
 </html>
