@@ -39,6 +39,7 @@ def get_url_secure(route):
 def thank_you():
     return render_template('thank_you.html')
 
+
 @app.route('/adventure')
 def adventure():
     return render_template('adventure.html')
