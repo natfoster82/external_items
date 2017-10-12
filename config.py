@@ -7,7 +7,6 @@ API_TOKEN = os.environ.get('AUTH_TOKEN', 'devtoken')
 SEI_URL_BASE = os.environ.get('SEI_URL_BASE', 'https://sei.caveon.com')
 SEI_ID = os.environ.get('SEI_ID')
 SEI_SECRET = os.environ.get('SEI_SECRET')
-ROLE_SECRETS = loads(os.environ.get('ROLE_SECRETS', '{}'))
 REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379')
 
 SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
