@@ -3,10 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Xtreme Lab</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .xtreme_app {
+            position: absolute;
+            width: 100%;
+            height: calc(100% - 50px);
+            border: none;
+        }
+        .submit_form {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
 </head>
 <body>
-<iframe src="{{ url }}"></iframe>
-<form method="post" action="{{ url_for('xtreme.submit', token=token) }}">
+<iframe class="xtreme_app" src="{{ url }}"></iframe>
+<form class="submit_form" method="post" action="{{ url_for('xtreme.submit', token=token) }}">
     <input name="instance_id" type="hidden" value="{{ instance_id }}"/>
     <input name="response_id" type="hidden" value="{{ response_id }}"/>
     <input name="exam_id" type="hidden" value="{{ exam_id }}"/>
