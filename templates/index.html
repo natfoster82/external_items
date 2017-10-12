@@ -4,8 +4,33 @@
     <meta charset="UTF-8">
     <title>SEI External Items</title>
 </head>
-<body>
-<h1>SEI External Items</h1>
-<a href="{{ config.SEI_URL_BASE }}/integrate?caveon_id={{ config.SEI_ID }}">Integrate</a>
+<style>
+    html, #extItemIntegration body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #fff;
+    }
+    #extItemIntegration section {
+        width: 98%;
+        margin: 30px auto;
+        background: #eee;
+        border-radius: 10px;
+        padding: 10px 50px 30px;
+        box-sizing: border-box;
+    }
+    #extItemIntegration a {
+        text-decoration:none;
+        background: #be1515;
+        padding: 3px 15px;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 3px;
+        text-transform: uppercase;
+    }
+</style>
+<body id="extItemIntegration">
+    <section>
+        <h1>SEI External Items</h1>
+        <a href="{{ config.SEI_URL_BASE }}/integrate?caveon_id={{ config.SEI_ID }}">Integrate</a>
+    </section>
 </body>
 </html>
