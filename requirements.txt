@@ -18,6 +18,7 @@ jinja2==2.9.6             # via flask
 markupsafe==1.0           # via jinja2
 pycparser==2.18           # via cffi
 pyopenssl==17.2.0         # via requests
+redis==2.10.6
 requests[security]==2.18.2
 six==1.10.0               # via cryptography, pyopenssl
 urllib3==1.22             # via requests
