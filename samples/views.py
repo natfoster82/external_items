@@ -38,6 +38,11 @@ def adventure():
     return render_template('adventure.html')
 
 
+@samples_bp.route('/connect4')
+def connect4():
+    return render_template('c4.html')
+
+
 @samples_bp.route('/colorblind', methods=['GET', 'POST'])
 def colorblind():
     if request.method == 'POST':
