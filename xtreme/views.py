@@ -63,6 +63,7 @@ def submit():
     # TODO: async this one
     score_resp = requests.get(score_url, auth=HTTPBasicAuth(username=current_app.config['XTREME_ID'],
                                                             password=current_app.config['XTREME_SECRET']))
+    # TODO: start a polling task for the score of the item and set it externally when the score is ready
     url = current_app.config['SEI_URL_BASE'] + '/api/set_response/' + response_id
     json = {
         'value': request.form['submit']
