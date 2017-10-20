@@ -12,7 +12,6 @@ external_serializer = URLSafeTimedSerializer(SECRET_KEY)
 
 def get_integration_info(exam_id):
     data = redis_store.get(exam_id)
-    print(data)
     if data:
         return loads(str(data, 'utf-8'))
     url = SEI_URL_BASE + '/api/integrations/' + exam_id

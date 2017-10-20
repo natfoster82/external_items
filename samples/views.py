@@ -46,7 +46,7 @@ def connect4():
 @samples_bp.route('/colorblind', methods=['GET', 'POST'])
 def colorblind():
     if request.method == 'POST':
-        response_id = request.args.get('sei_response_id')
+        response_id = request.args.get('response_id')
         if response_id:
             exam_id = request.args.get('exam_id')
             external_token = request.args.get('external_token')
