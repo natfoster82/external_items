@@ -47,10 +47,8 @@ def connect4():
 def colorblind():
     if request.method == 'POST':
         response_id = request.args.get('response_id')
-        print('response_id', response_id)
         if response_id:
             exam_id = request.args.get('exam_id')
-            print('exam_id', exam_id)
             external_token = request.args.get('external_token')
             url = current_app.config['SEI_URL_BASE'] + '/api/set_response/' + response_id
             json = {
@@ -59,7 +57,6 @@ def colorblind():
             if external_token:
                 url += '?external_token=' + external_token
                 r = requests.post(url, json=json)
-                print('external_token_r', r.text)
             elif exam_id:
                 try:
                     integration_info = get_integration_info(exam_id)
@@ -70,7 +67,6 @@ def colorblind():
                     'Authorization': 'Bearer {0}'.format(token)
                 }
                 r = requests.post(url, json=json, headers=headers)
-                print('exam_id_r', r.text)
             else:
                 r = None
             if r and r.status_code not in {200, 201}:
