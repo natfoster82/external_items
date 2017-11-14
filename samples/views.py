@@ -59,6 +59,7 @@ def colorblind():
             if external_token:
                 url += '?external_token=' + external_token
                 r = requests.post(url, json=json)
+                print('external_token_r', r.text)
             elif exam_id:
                 try:
                     integration_info = get_integration_info(exam_id)
@@ -69,6 +70,7 @@ def colorblind():
                     'Authorization': 'Bearer {0}'.format(token)
                 }
                 r = requests.post(url, json=json, headers=headers)
+                print('exam_id_r', r.text)
             else:
                 r = None
             if r and r.status_code not in {200, 201}:
