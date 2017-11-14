@@ -47,8 +47,10 @@ def connect4():
 def colorblind():
     if request.method == 'POST':
         response_id = request.args.get('response_id')
+        print('response_id', response_id)
         if response_id:
             exam_id = request.args.get('exam_id')
+            print('exam_id', exam_id)
             external_token = request.args.get('external_token')
             url = current_app.config['SEI_URL_BASE'] + '/api/set_response/' + response_id
             json = {
@@ -70,7 +72,6 @@ def colorblind():
             else:
                 r = None
             if r and r.status_code not in {200, 201}:
-                print(r.text)
                 abort(400)
         return redirect(url_for('samples.thank_you'))
     return render_template('colorblind.html', query_params=request.args)
