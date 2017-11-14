@@ -70,6 +70,7 @@ def colorblind():
             else:
                 r = None
             if r and r.status_code not in {200, 201}:
+                print(r.text)
                 abort(400)
         return redirect(url_for('samples.thank_you'))
     return render_template('colorblind.html', query_params=request.args)
