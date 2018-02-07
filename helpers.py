@@ -14,7 +14,7 @@ def get_integration_info(exam_id):
     data = redis_store.get(exam_id)
     if data:
         return loads(str(data, 'utf-8'))
-    url = SEI_URL_BASE + '/api/integrations/' + exam_id
+    url = SEI_URL_BASE + '/api/integrations/' + exam_id + '/credentials'
     resp = requests.get(url, auth=HTTPBasicAuth(username=SEI_ID, password=SEI_SECRET))
     if resp.status_code != 200:
         raise ValueError('No access to this exam_id')
